@@ -1,0 +1,11 @@
+.d:after {
+	display:block;
+	content: "min-50em.css was loaded.";
+	margin-top: 1em;
+}
+
+@media (min-width: 600px){
+	.d:after {
+		content: "min-50em.css was loaded and is currently applied.";
+	}
+}

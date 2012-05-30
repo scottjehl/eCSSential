@@ -8,13 +8,23 @@
 		<!-- CSS -->
 		<!-- if we have JS, let's only load the CSS that will apply on this screen, and better yet, defer the load of any CSS that won't apply in the current viewport width -->
 		<script>
-			window.eCSSential=function(a){var b=[],c=[],d=Math.max(screen.width,screen.height);for(var e in a)if(a.hasOwnProperty(e)){var f=parseFloat(e);window.innerWidth>=f?b.push(a[e]):d>=f&&c.push(a[e])}b.length&&document.write('<link rel="stylesheet" href="'+b.join(",")+'=concat">');if(c.length){var g=document.createElement("link"),h=document.getElementsByTagName("head")[0];g.rel="stylesheet",g.href=c.join(",")+"=concat",setTimeout(function(){h.appendChild(g)},0)}};
-		
+			/*! matchMedia() polyfill - Test a CSS media type/query in JS. Authors & copyright (c) 2012: Scott Jehl, Paul Irish, Nicholas Zakas. Dual MIT/BSD license */
+			window.matchMedia=window.matchMedia||function(a,b){var c,d=a.documentElement,e=d.firstElementChild||d.firstChild,f=a.createElement("body"),g=a.createElement("div");return g.id="mq-test-1",g.style.cssText="position:absolute;top:-100em",f.style.background="none",f.appendChild(g),function(a){return g.innerHTML='&shy;<style media="'+a+'"> #mq-test-1 { width: 42px; }</style>',d.insertBefore(f,e),c=g.offsetWidth==42,d.removeChild(f),{matches:c,media:a}}}(document)
+
+			/*! eCSSential.js: An experiment in optimized loading of mobile-first responsive CSS. [c]2012 @scottjehl, MIT/GPLv2 */
+			window.eCSSential=function(a,b){var c=[],d=[],e=window,f=e.document;for(var g in a)a.hasOwnProperty(g)&&(e.matchMedia(g).matches||b&&0&&e.navigator.appVersion.match(/MSIE [678]\./)?c.push(a[g]):e.matchMedia(g.replace(/(min)(\-width)/,"$1-device$2")).matches&&d.push(a[g]));c.length&&f.write('<link rel="stylesheet" href="'+c.join(",")+'=concat">');if(d.length){var h=f.createElement("link"),i=f.getElementsByTagName("head")[0];h.rel="stylesheet",h.href=d.join(",")+"=concat",setTimeout(function(){i.appendChild(h)},0)}}
+
 			//Go! Load CSS now/later/never by passing in object of stylesheet hrefs with breakpoint min-width keys
-			eCSSential( { "0": "_css/all.css", "400": "_css/min-400.css", "600": "_css/min-600.css", "800": "_css/min-800.css", "1000": "_css/min-1000.css" });
+			eCSSential({ 
+				"all": "_css/all.css",
+				"(min-width: 20em)": "_css/min-20em.css",
+				"(min-width: 37.5em)": "_css/min-37.5em.css",
+				"(min-width: 50em)": "_css/min-50em.css",
+				"(min-width: 62.5em)": "_css/min-62.5em.css"
+			}, true );
 		</script>
 		<!-- no JS? Load css for all breakpoints, or just the initial breakpoint - up to you... -->
-		<noscript><link href="_css/all.css,_css/min-400.css,_css/min-600.css,_css/min-800.css,_css/min-1000.css=concat" rel="stylesheet"></noscript>
+		<noscript><link href="_css/all.css,_css/min-25em.css,_css/min-37.5em.css,_css/min-50em.css,_css/min-62.5em.css=concat" rel="stylesheet"></noscript>
 		<!-- /CSS -->
 		</head>
 	<body>

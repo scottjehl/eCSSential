@@ -1,0 +1,11 @@
+.e:after {
+	display:block;
+	content: "min-62.5em.css was loaded.";
+	margin-top: 1em;
+}
+
+@media (min-width: 1000px){
+	.e:after {
+		content: "min-62.5em.css was loaded and is currently applied.";
+	}
+}
