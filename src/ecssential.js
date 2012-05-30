@@ -4,14 +4,18 @@ window.matchMedia=window.matchMedia||function(a,b){var c,d=a.documentElement,e=d
 
 /*! eCSSential.js: An experiment in optimized loading of mobile-first responsive CSS. [c]2012 @scottjehl, MIT/GPLv2 */
 window.eCSSential = function( css, okayIElte8 ){
-	var load = [], defer = [], w = window, d = w.document;
+	var load = [],
+		defer = [],
+		w = window,
+		d = w.document, 
+		freePass = okayIElte8 && /*@cc_on!@*/0 && w.navigator.appVersion.match( /MSIE [678]\./ );
 
 	for( var mq in css ){					
 		if( css.hasOwnProperty( mq ) ){
 			// if stylesheet will apply at current viewport width, 
 			// or browser is lteIE8 and you're intending to polyfill mq support for it,
 			// queue for blocking load
-			if( w.matchMedia( mq ).matches || ( okayIElte8 && /*@cc_on!@*/0 && w.navigator.appVersion.match( /MSIE [678]\./ ) ) ) {
+			if( freePass || w.matchMedia( mq ).matches ){
 				load.push( css[ mq ] );
 			}
 			// otherwise, queue it for deferred load, as long as it could potentially apply, by checking the same query against device-width

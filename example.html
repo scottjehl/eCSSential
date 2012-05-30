@@ -12,7 +12,7 @@
 			window.matchMedia=window.matchMedia||function(a,b){var c,d=a.documentElement,e=d.firstElementChild||d.firstChild,f=a.createElement("body"),g=a.createElement("div");return g.id="mq-test-1",g.style.cssText="position:absolute;top:-100em",f.style.background="none",f.appendChild(g),function(a){return g.innerHTML='&shy;<style media="'+a+'"> #mq-test-1 { width: 42px; }</style>',d.insertBefore(f,e),c=g.offsetWidth==42,d.removeChild(f),{matches:c,media:a}}}(document)
 
 			/*! eCSSential.js: An experiment in optimized loading of mobile-first responsive CSS. [c]2012 @scottjehl, MIT/GPLv2 */
-			window.eCSSential=function(a,b){var c=[],d=[],e=window,f=e.document;for(var g in a)a.hasOwnProperty(g)&&(e.matchMedia(g).matches||b&&0&&e.navigator.appVersion.match(/MSIE [678]\./)?c.push(a[g]):e.matchMedia(g.replace(/(min)(\-width)/,"$1-device$2")).matches&&d.push(a[g]));c.length&&f.write('<link rel="stylesheet" href="'+c.join(",")+'=concat">');if(d.length){var h=f.createElement("link"),i=f.getElementsByTagName("head")[0];h.rel="stylesheet",h.href=d.join(",")+"=concat",setTimeout(function(){i.appendChild(h)},0)}}
+			window.eCSSential=function(a,b){var c=[],d=[],e=window,f=e.document,g=b&&0&&e.navigator.appVersion.match(/MSIE [678]\./);for(var h in a)a.hasOwnProperty(h)&&(g||e.matchMedia(h).matches?c.push(a[h]):e.matchMedia(h.replace(/(min)(\-width)/,"$1-device$2")).matches&&d.push(a[h]));c.length&&f.write('<link rel="stylesheet" href="'+c.join(",")+'=concat">');if(d.length){var i=f.createElement("link"),j=f.getElementsByTagName("head")[0];i.rel="stylesheet",i.href=d.join(",")+"=concat",setTimeout(function(){j.appendChild(i)},0)}};
 
 			//Go! Load CSS now/later/never by passing in object of stylesheet hrefs with breakpoint min-width keys
 			eCSSential({ 
@@ -22,6 +22,7 @@
 				"(min-width: 50em)": "_css/min-50em.css",
 				"(min-width: 62.5em)": "_css/min-62.5em.css"
 			}, true );
+			
 		</script>
 		<!-- no JS? Load css for all breakpoints, or just the initial breakpoint - up to you... -->
 		<noscript><link href="_css/all.css,_css/min-25em.css,_css/min-37.5em.css,_css/min-50em.css,_css/min-62.5em.css=concat" rel="stylesheet"></noscript>

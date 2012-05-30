@@ -4,7 +4,7 @@
 	margin-top: 1em;
 }
 
-@media (min-width: 600px){
+@media (min-width: 50em){
 	.d:after {
 		content: "min-50em.css was loaded and is currently applied.";
 	}
