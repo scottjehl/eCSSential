@@ -30,14 +30,15 @@ window.eCSSential = function( css, okayIElte8 ){
 		d.write( '<link rel="stylesheet" href="' + load.join( "," ) + '=concat">' );
 	}
 	
+	//write an insertion point marker for the async css
+	d.write( '<meta id="eCCS">' );
+	
 	// defer the load of the stylesheet that could later apply
 	if( defer.length ){
 		var link = d.createElement( "link" ),
-			head = d.getElementsByTagName( "head" )[0];
+			marker = d.getElementById( "eCCS" );
 		link.rel = "stylesheet";
 		link.href = defer.join( "," ) + "=concat";
-		setTimeout(function(){
-			head.appendChild( link );
-		}, 0 );
+		marker.parentNode.insertBefore( link, marker );
 	}
 };
