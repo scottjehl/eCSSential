@@ -20,7 +20,7 @@ window.eCSSential = function( css, okayIElte8 ){
 				load.push( css[ mq ] );
 			}
 			// otherwise, queue it for deferred load, as long as it could potentially apply, by checking the same query against device-width
-			else if( w.matchMedia( mq.replace( /(min)(\-width)/, "$1-device$2" ) ).matches ) {
+			else if( w.matchMedia( mq.replace( /(min|max)(\-width)/, "$1-device$2" ) ).matches ) {
 				defer.push( css[ mq ] );
 			}
 		}
