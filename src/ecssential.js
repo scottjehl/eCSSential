@@ -8,7 +8,8 @@ window.eCSSential = function( css, okayIElte8 ){
 		defer = [],
 		w = window,
 		d = w.document, 
-		freePass = okayIElte8 && /*@cc_on!@*/0 && w.navigator.appVersion.match( /MSIE [678]\./ );
+		freePass = okayIElte8 && /*@cc_on!@*/0 && w.navigator.appVersion.match( /MSIE [678]\./ ),
+		insLoc = d.getElementsByTagName( "script" )[0];
 
 	for( var mq in css ){					
 		if( css.hasOwnProperty( mq ) ){
@@ -27,18 +28,15 @@ window.eCSSential = function( css, okayIElte8 ){
 	
 	// document.write the stylesheet that should block
 	if( load.length ){
-		d.write( '<link rel="stylesheet" href="' + load.join( "," ) + '=concat">' );
+		d.write( '<link rel="stylesheet" href="' + load.join( "," ) + '=concat"><meta id="eCSS">' );
+		insLoc = d.getElementById( "eCSS" );
 	}
-	
-	//write an insertion point marker for the async css
-	d.write( '<meta id="eCCS">' );
 	
 	// defer the load of the stylesheet that could later apply
 	if( defer.length ){
-		var link = d.createElement( "link" ),
-			marker = d.getElementById( "eCCS" );
+		var link = d.createElement( "link" );
 		link.rel = "stylesheet";
 		link.href = defer.join( "," ) + "=concat";
-		marker.parentNode.insertBefore( link, marker );
+		insLoc.parentNode.insertBefore( link, insLoc );
 	}
 };
