@@ -4,6 +4,7 @@ window.matchMedia=window.matchMedia||function(a,b){var c,d=a.documentElement,e=d
 
 /*! eCSSential.js: An experiment in optimized loading of mobile-first responsive CSS. [c]2012 @scottjehl, MIT/GPLv2 */
 window.eCSSential = function( css, okayIElte8 ){
+	"use strict";
 	var load = [],
 		defer = [],
 		w = window,
