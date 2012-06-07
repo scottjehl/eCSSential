@@ -16,7 +16,7 @@ window.eCSSential = function( css, config ){
 			// or if the non-default config.oldIE option is true and the browser is IE 6-8
 			// queue the stylesheet for a renderer-blocking load
 			if( ( o.oldIE && w.navigator.appVersion.match( /MSIE [678]\./ ) ) || w.matchMedia( mq ).matches ){
-				load.push( css[ mq ] );
+				load.push( { mq: mq, href: css[ mq ] } );
 			}
 			// otherwise, decide whether to queue it for deferred load
 			else {
@@ -26,7 +26,7 @@ window.eCSSential = function( css, config ){
 				// by running them as a "device" query instead of a viewport query. 
 				// You can disable this behavior and defer every stylesheet by setting the deferAll configuration option
 				if( o.deferAll || !mq.match( re ) || w.matchMedia( mq.replace( re, "$1-device-$2" ) ).matches ){
-					defer.push( css[ mq ] );
+					defer.push( { mq: mq, href: css[ mq ] } );
 				}
 			}
 		}
@@ -36,15 +36,26 @@ window.eCSSential = function( css, config ){
 	// first argument is array of urls, second argument is bool for inserting meta element marker (only used in block)
 	function makeLinks( arr ){
 		var marker = arr === load ? '<meta id="eCSS">' : '',
-			start = '<link rel="stylesheet" href="',
-			end = '">';
+			start = '<link href="',
+			end = '" rel="stylesheet">',
+			nonconcatend = '" media',
+			hrefs = [],
+			hrefmqs = [];
+
+		for( var i in arr ){
+			if( arr.hasOwnProperty( i ) ){
+				hrefs.push( arr[ i ].href );
+				hrefmqs.push( arr[ i ].href + '" media="' + arr[ i ].mq );
+			}
+		}
+		
 		// if the concat option is specified (recommended), pass the array through it and dump the resulting string into a single stylesheet url
 		if( o.concat ){
-			return '<link rel="stylesheet" href="' + o.concat( arr ) + '">' + marker;
+			return start + o.concat( hrefs ) + end + marker;
 		}
 		// otherwise, make separate link elements
 		else {
-			return start + arr.join( end + start ) + end + marker;
+			return start + hrefmqs.join( '" ' + end + start ) + end + marker;
 		}
 	}
 	
