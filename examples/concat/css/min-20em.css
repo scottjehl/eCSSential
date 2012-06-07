@@ -4,7 +4,7 @@
 	margin-top: 1em;
 }
 
-@media (min-width: 400px){
+@media (min-width: 20em){
 	.b:after {
 		content: "min-20em.css was loaded and is currently applied.";
 	}

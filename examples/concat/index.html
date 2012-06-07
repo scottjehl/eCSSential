@@ -4,9 +4,8 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>eCSSential | Test Template</title>
-		<script>
-			<!-- INLINE ECSSENTIAL TO PREVENT REQUEST -->
-			<? include( "../../dist/eCSSential.min.js" ); ?>				
+		<!-- INLINE THIS FILE --><script src="../../dist/eCSSential.min.js"></script>
+		<script>	
 			eCSSential({ 
 				"all": "css/all.css",
 				"(min-width: 20em)": "css/min-20em.css",
@@ -14,14 +13,14 @@
 				"(min-width: 50em)": "css/min-50em.css",
 				"(min-width: 62.5em)": "css/min-62.5em.css"
 			}, {
-				// Set concat option to return the format quickConcat.php uses
+				// Set concat option to reference a static, concatenated file in the css/combined directory
 				concat: function( arr ){
-					return "quickconcat.php?files=" + arr.join();
+					return "css/combined/" + arr.join("").replace( /css\/?/gmi, "" ) + "css";
 				}
 			} );
 		</script>
 		<!-- no JS? Put fallback CSS link here. -->
-		<noscript><link href="quickconcat.php?files=css/all.css,css/min-20em.css,css/min-37.5em.css,css/min-50em.css,css/min-62.5em.css" rel="stylesheet"></noscript>
+		<noscript><link href="css/combined/all.min-20em.min-37.5em.min-50em.min-62.5em.css" rel="stylesheet"></noscript>
 		<!-- /CSS -->
 		</head>
 	<body>

@@ -1,0 +1,45 @@
+.b:after {
+	display:block;
+	content: "min-20em.css was loaded.";
+	margin-top: 1em;
+}
+
+@media (min-width: 20em){
+	.b:after {
+		content: "min-20em.css was loaded and is currently applied.";
+	}
+}
+.c:after {
+	display:block;
+	content: "min-37.5em.css was loaded.";
+	margin-top: 1em;
+}
+
+@media (min-width: 37.5em){
+	.c:after {
+		content: "min-37.5em.css was loaded and is currently applied.";
+	}
+}
+
+.d:after {
+	display:block;
+	content: "min-50em.css was loaded.";
+	margin-top: 1em;
+}
+
+@media (min-width: 50em){
+	.d:after {
+		content: "min-50em.css was loaded and is currently applied.";
+	}
+}
+.e:after {
+	display:block;
+	content: "min-62.5em.css was loaded.";
+	margin-top: 1em;
+}
+
+@media (min-width: 62.5em){
+	.e:after {
+		content: "min-62.5em.css was loaded and is currently applied.";
+	}
+}
