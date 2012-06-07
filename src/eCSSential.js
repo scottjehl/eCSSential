@@ -8,26 +8,31 @@ window.eCSSential = function( css, config ){
 		w = window,
 		d = w.document,
 		insLoc = d.getElementsByTagName( "script" )[0],
-		re = /(min|max)-(width|height)/;
+		whre = /(min|max)-(width|height)/gmi,
+		ieV = w.navigator.appVersion.match( /MSIE ([678])\./ ) && RegExp.$1,
+		ieRe = new RegExp( "(IE" + ieV + ")|(IE)", "g" );
 	
 	for( var mq in css ){					
 		if( css.hasOwnProperty( mq ) ){
 			// if media query evaluates true,
-			// or if the non-default config.oldIE option is true and the browser is IE 6-8
+			// or if the browser is IE 6-8 and the key is a IEx match, or the o.oldIE option is true,
 			// queue the stylesheet for a renderer-blocking load
-			if( ( o.oldIE && w.navigator.appVersion.match( /MSIE [678]\./ ) ) || w.matchMedia( mq ).matches ){
-				load.push( { mq: mq, href: css[ mq ] } );
+			var iekey = mq.match( ieRe );
+
+			if( w.matchMedia( mq ).matches || ( ieV && ( o.oldIE || iekey && iekey[ 1 ] ) ) ){
+				load.push( {
+					//keep the media attribute, but leave it as "all" if it was an "IEx" key
+					mq: o.oldIE || iekey ? "all" : mq,
+					href: css[ mq ]
+				} );
 			}
-			// otherwise, decide whether to queue it for deferred load
-			else {
-				// Queue for deferred load some stylesheets that didn't evaluate true the first time
-				// Note: this means many stylesheets intended for conditions that could never apply (such as a width wider than the maximum device width) will be loaded anyway, causing more HTTP requests.
-				// min/max-width/height queries are by default evaluated to see if they could never apply on the current screen
-				// by running them as a "device" query instead of a viewport query. 
-				// You can disable this behavior and defer every stylesheet by setting the deferAll configuration option
-				if( o.deferAll || !mq.match( re ) || w.matchMedia( mq.replace( re, "$1-device-$2" ) ).matches ){
-					defer.push( { mq: mq, href: css[ mq ] } );
-				}
+			// otherwise, queue for deferred load some stylesheets that didn't evaluate true the first time
+			// Note: this means many stylesheets intended for conditions that could never apply (such as a width wider than the maximum device width) will be loaded anyway, causing more HTTP requests.
+			// min/max-width/height queries are by default evaluated to see if they could never apply on the current screen
+			// by running them as a "device" query instead of a viewport query. 
+			// You can disable this behavior and defer every stylesheet by setting the deferAll configuration option
+			else if( !iekey && ( o.deferAll || !mq.match( whre ) || w.matchMedia( mq.replace( whre, "$1-device-$2" ) ).matches ) ){
+				defer.push( { mq: mq, href: css[ mq ] } );
 			}
 		}
 	}

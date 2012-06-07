@@ -1,0 +1,14 @@
+body {
+	font-family: sans-serif;
+	margin: 50px 5%;
+	line-height: 1.2;
+}
+.explain {
+	border-bottom: 1px dotted #333;
+	padding-bottom: 2em;
+}
+.a:after {
+	display:block;
+	content: "all.css was loaded and is currently applied.";
+	margin-top: 1em;
+}
