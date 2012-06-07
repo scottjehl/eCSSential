@@ -4,16 +4,8 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>eCSSential | test template</title>
-		
-		<!-- CSS -->
-		<!-- if we have JS, let's only load the CSS that will apply on this screen, and better yet, defer the load of any CSS that won't apply in the current viewport width -->
-		<script>
-			/*! matchMedia() polyfill - Test a CSS media type/query in JS. Authors & copyright (c) 2012: Scott Jehl, Paul Irish, Nicholas Zakas. Dual MIT/BSD license */
-			window.matchMedia=window.matchMedia||function(a,b){var c,d=a.documentElement,e=d.firstElementChild||d.firstChild,f=a.createElement("body"),g=a.createElement("div");return g.id="mq-test-1",g.style.cssText="position:absolute;top:-100em",f.style.background="none",f.appendChild(g),function(a){return g.innerHTML='&shy;<style media="'+a+'"> #mq-test-1 { width: 42px; }</style>',d.insertBefore(f,e),c=g.offsetWidth==42,d.removeChild(f),{matches:c,media:a}}}(document)
-
-			/*! eCSSential.js: An experiment in optimized loading of mobile-first responsive CSS. [c]2012 @scottjehl, MIT/GPLv2 */
-			window.eCSSential=function(a,b){var c=[],d=[],e=window,f=e.document,g=b&&0&&e.navigator.appVersion.match(/MSIE [678]\./),h=f.getElementsByTagName("script")[0];for(var i in a)a.hasOwnProperty(i)&&(g||e.matchMedia(i).matches?c.push(a[i]):e.matchMedia(i.replace(/(min|max)(\-width)/,"$1-device$2")).matches&&d.push(a[i]));c.length&&(f.write('<link rel="stylesheet" href="'+c.join(",")+'=concat"><meta id="eCSS">'),h=f.getElementById("eCSS"));if(d.length){var j=f.createElement("link");j.rel="stylesheet",j.href=d.join(",")+"=concat",h.parentNode.insertBefore(j,h)}};
-			
+		<!-- INLINE THIS SCRIPT --><script src="src/ecssential.js"></script>
+		<script>					
 			//Go! Load CSS now/later/never by passing in object of stylesheet hrefs with breakpoint min-width keys
 			eCSSential({ 
 				"all": "_css/all.css",
@@ -22,10 +14,15 @@
 				"(min-width: 50em)": "_css/min-50em.css",
 				"(min-width: 62.5em)": "_css/min-62.5em.css"
 			}, true );
-			
 		</script>
-		<!-- no JS? Load css for all breakpoints, or just the initial breakpoint - up to you... -->
-		<noscript><link href="_css/all.css,_css/min-20em.css,_css/min-37.5em.css,_css/min-50em.css,_css/min-62.5em.css=concat" rel="stylesheet"></noscript>
+		<!-- no JS? Put fallback CSS here. -->
+		<noscript>
+			<link href="_css/all.css" rel="stylesheet">
+			<link href="_css/min-20em.css" rel="stylesheet">
+			<link href="_css/min-37.5em.css" rel="stylesheet">
+			<link href="_css/min-50em.css" rel="stylesheet">
+			<link href="_css/min-62.5em.css" rel="stylesheet">
+		</noscript>
 		<!-- /CSS -->
 		</head>
 	<body>
