@@ -70,7 +70,6 @@ window.eCSSential = function( css, config ){
 		var marker = arr === load ? '<meta id="eCSS">' : '',
 			start = '<link href="',
 			end = '" rel="stylesheet">',
-			nonconcatend = '" media',
 			hrefs = [],
 			hrefmqs = [];
 
