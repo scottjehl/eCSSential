@@ -15,7 +15,7 @@ window.eCSSential = function( css, config ){
 			// if media query evaluates true,
 			// or if the non-default config.oldIE option is true and the browser is IE 6-8
 			// queue the stylesheet for a renderer-blocking load
-			if( ( o.oldIE && /*!@cc_on!@*/0 && w.navigator.appVersion.match( /MSIE [678]\./ ) ) || w.matchMedia( mq ).matches ){
+			if( ( o.oldIE && w.navigator.appVersion.match( /MSIE [678]\./ ) ) || w.matchMedia( mq ).matches ){
 				load.push( css[ mq ] );
 			}
 			// otherwise, decide whether to queue it for deferred load
