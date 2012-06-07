@@ -24,13 +24,15 @@ module.exports = function(grunt) {
         dest: 'dist/<%= pkg.name %>.min.js'
       }
     },
-    qunit: {},
     lint: {
       files: ['grunt.js', 'libs/matchMedia/*.js', 'src/**/*.js']
     },
+    qunit: {
+      files: ['test/unit/*.html']
+    },
     watch: {
-      files: '<config:lint.files>',
-      tasks: 'lint concat min'
+      files: ['<config:lint.files>', '<config:concat.dist.src>'],
+      tasks: 'lint qunit concat min'
     },
     jshint: {
       options: {
@@ -54,6 +56,6 @@ module.exports = function(grunt) {
   });
 
   // Default task.
-  grunt.registerTask('default', 'lint concat min');
+  grunt.registerTask('default', 'lint qunit concat min');
 
 };
