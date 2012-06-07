@@ -40,7 +40,7 @@ window.eCSSential = function( css, config ){
 			end = '">';
 		// if the concat option is specified (recommended), pass the array through it and dump the resulting string into a single stylesheet url
 		if( o.concat ){
-			return '<link rel="stylesheet" href="' + o.concat( arr ) + '>' + marker;
+			return '<link rel="stylesheet" href="' + o.concat( arr ) + '">' + marker;
 		}
 		// otherwise, make separate link elements
 		else {
