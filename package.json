@@ -1,0 +1,33 @@
+{
+  "name": "eCSSential",
+  "title": "eCSSential",
+  "description": "Responsible, responsive CSS loading.",
+  "version": "0.1.0",
+  "homepage": "https://github.com/scottjehl/eCSSential",
+  "author": {
+    "name": "Scott Jehl, @scottjehl, Filament Group, Inc.",
+    "email": "",
+    "url": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/scottjehl/eCSSential"
+  },
+  "bugs": {
+    "url": "https://github.com/scottjehl/eCSSential/issues"
+  },
+  "licenses": [
+    {
+      "type": "GPL",
+      "url": "https://github.com/scottjehl/eCSSential/blob/master/LICENSE-GPL"
+    },
+    {
+      "type": "MIT",
+      "url": "https://github.com/scottjehl/eCSSential/blob/master/LICENSE-MIT"
+    }
+  ],
+  "dependencies": {
+    "jquery": "~1.5"
+  },
+  "keywords": []
+}
