@@ -3,10 +3,40 @@ body {
 	margin: 50px 5%;
 	line-height: 1.2;
 }
-.explain {
-	border-bottom: 1px dotted #333;
-	padding-bottom: 2em;
+em {
+	font-size: .8em;
+	font-style: normal;
+	color: #666;
 }
+.explain, #data {
+	padding-bottom: 2em;
+	font-size: .9em;
+}
+#data {
+	background: #f3f3f3;
+	padding: 2em;
+}
+#data p,#data dt {
+	font-weight: bold;
+}
+#data dl {
+	overflow: hidden;
+	margin: 0;
+}
+#data dt {
+	display:block;
+	margin: 0;
+	padding: 0 .5em .5em 2em;
+}
+#data dt:after {
+	content: ":";
+}
+#data dd {
+	margin: 0;
+	display:block;
+	padding: 0 .5em 1em 2em;
+}
+
 .a:after {
 	display:block;
 	content: "all.css was loaded and is currently applied.";

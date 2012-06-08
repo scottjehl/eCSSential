@@ -7,7 +7,8 @@
 		
 		<!-- INLINE THIS FILE --><script src="../../dist/eCSSential.min.js"></script>
 		<script>
-			eCSSential({ 
+			//note: using a var isn't necessary here. It's useful in this example so we can collect the data
+			var loadCSS = eCSSential({ 
 				"all": "css/all.css",
 				"(min-width: 20em)": "css/min-20em.css",
 				"(min-width: 37.5em)": "css/min-37.5em.css",
@@ -32,9 +33,18 @@
 	<body>
 		<h1> eCSSential</h1>
 		<p>An experiment in optimized loading of mobile-first responsive CSS.</p>
-		<p>[c]2012 @scottjehl, MIT/GPLv2</p>
+		<p>[c]2012 @scottjehl, Filament Group, Inc. MIT/GPLv2</p>
 		
-		<p class="explain">Each stylesheet will add a line of text below to announce its presence and whether its intended breakpoint is currently active. Note that this script is merely concerned with improving stylesheet loading performance, but how and where those loaded stylesheets apply is still controlled by CSS media queries.</p>
+		<h2>Page load data</h2>
+		<div id="data">
+			JavaScript wasn't available so the fallback stylesheet loaded.
+		</div>
+		
+		<!-- expose the data on what was loaded and when -->
+		<script src="../logdata.js"></script>
+		
+		<h2>CSS output</h2>
+		<p class="explain">In browsers that support CSS pseudo elements (like <code>:after{}</code>), each loaded stylesheet will add a line of text below to announce its presence and whether its intended breakpoint is currently active. Note that this script is merely concerned with improving stylesheet loading performance, but how and where those loaded stylesheets apply is still controlled by CSS media queries.</p>
 		
 		<!-- just some example elements for the various CSS files to populate and make their presence/visibility known -->
 		<p class="a"></p>
@@ -42,5 +52,6 @@
 		<p class="c"></p>
 		<p class="d"></p>
 		<p class="e"></p>
+		
 	</body>
 </html>
