@@ -1,4 +1,7 @@
-/*! eCSSential.js: An experiment in optimized loading of mobile-first responsive CSS. [c]2012 @scottjehl, MIT/GPLv2 */
+/*! eCSSential
+* https://github.com/scottjehl/eCSSential
+* Copyright (c) 2012 Scott Jehl, @scottjehl, Filament Group, Inc.; Licensed GPL, MIT; Includes matchMedia.js: http://j.mp/jay3wJ (MIT)  */
+
 window.eCSSential = function( css, config ){
 	"use strict";
 	var load = [],
@@ -75,4 +78,6 @@ window.eCSSential = function( css, config ){
 		div.innerHTML = makeLinks( defer );
 		insLoc.parentNode.insertBefore( div, insLoc );
 	}
+	// return data for testing
+	return { css: css, config: config, block: load, defer: defer };
 };
