@@ -15,11 +15,16 @@ Unfortunately, this limitation can make for a lot of overhead in responsive desi
 
 eCSSential is a JavaScript utility that is designed to make browsers download files in a faster, more responsible manner than they do by default. Technically speaking, it is a teeny bit of inline JavaScript that determines which of your stylesheets should be loaded immediately and block page rendering (any stylesheets intended for  mobile-first breakpoints that currently apply), which stylesheets should be deferred to load asynchronously (any stylesheets intended for breakpoints that don't currently apply to the current viewport size, but could apply later, given the device's screen size), and which stylesheets should never be loaded at all (any stylesheets intended for viewport dimensions that are larger than the device's screen). Once sorted, the essential (or eCSSential if you will) files are loaded in a way that ensures page rendering will be blocked until they're ready. The other less-essential files are loaded in a non-blocking way, letting the page render while they are fetched. 
 
-### Check out the demos
+## Check out the demos
 
 - [Default eCSSential Usage](http://scottjehl.github.com/eCSSential/examples/default)
 - [eCSSential with concatenated CSS files](http://scottjehl.github.com/eCSSential/examples/concat)
-- [eCSSential with oldIE option true (uses a media query polyfill)](http://scottjehl.github.com/eCSSential/examples/oldIE)
+- [eCSSential with IE-specific stylesheets](http://scottjehl.github.com/eCSSential/examples/oldIE-separate-CSS)
+- [eCSSential with a media query polyfill](http://scottjehl.github.com/eCSSential/examples/oldIE)
+
+### Seeing the Results
+
+If you're in a desktop browser, you can pop open the demo page (try the [concatentated files demo](http://scottjehl.github.com/eCSSential/examples/concat) for the best performance) and check your developer console to see which stylesheets were loaded immediately and which were deferred; changing your viewport/window width and reloading the page will change where this loading split occurs.
 
 
 ## How To Use eCSSential
@@ -153,11 +158,6 @@ By default, eCSSential will not load stylesheets that are targeted at dimensions
 	    "(min-width: 50em)": "css/min-50em.css",
 	    "(min-width: 62.5em)": "css/min-62.5em.css"
 	}, { deferAll: true } );
-
-
-## Seeing the Results
-
-If you're in a desktop browser, you can pop open the demo page (try the [concat demo](http://scottjehl.github.com/eCSSential/examples/concat) for the best performance results) and check your developer console to see which stylesheets were loaded immediately and which were deferred; changing your viewport/window width and reloading the page will change where this loading split occurs.
 
 
 ## Further notes
