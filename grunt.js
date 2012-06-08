@@ -9,8 +9,8 @@ module.exports = function(grunt) {
         '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
         '<%= pkg.homepage ? "* " + pkg.homepage + "\n" : "" %>' +
         '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
-		'* Includes window.matchMedia polyfill: http://j.mp/jay3wJ (MIT license)' +
-        ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */'
+        ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %>;' +
+		' Includes matchMedia.js: http://j.mp/jay3wJ (MIT)  */'
     },
     concat: {
       dist: {
