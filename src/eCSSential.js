@@ -6,6 +6,7 @@ window.eCSSential = function( css, config ){
 	"use strict";
 	var load = [],
 		defer = [],
+		timedout = [],
 		// All options false or null by default; no need for a mixin
 		o = config || {},
 		w = window,
@@ -66,10 +67,27 @@ window.eCSSential = function( css, config ){
 		}
 	}
 	
-	// document.write the stylesheet that should block
+	// document.write the stylesheets that should block
 	if( load.length ){
 		d.write( makeLinks( load ) );
 		insLoc = d.getElementById( "eCSS" );
+		
+		// set up timeout to stop a stylesheet from blocking after 8 seconds
+		// or by however many ms are passed via o.patience
+		var links = insLoc.parentNode.getElementsByTagName( "link" );
+		for(var i = 0, il = links.length; i< il; i++ ){
+			(function( c ){
+				var t = w.setTimeout(function(){
+						var next = c.nextSibling;
+						c.parentNode.removeChild( c );
+						next.parentNode.insertBefore( c, next );
+						timedout.push( c );
+					}, o.patience || 8000 ); 
+				c.onload = function(){
+					clearTimeout( t );
+				};
+			}( links[ i ] ));
+		}
 	}
 	
 	// defer the load of the stylesheet that could later apply
@@ -79,5 +97,5 @@ window.eCSSential = function( css, config ){
 		insLoc.parentNode.insertBefore( div, insLoc );
 	}
 	// return data for testing
-	return { css: css, config: config, block: load, defer: defer };
+	return { css: css, config: config, block: load, defer: defer, timedout: timedout };
 };

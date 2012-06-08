@@ -78,6 +78,7 @@
 		info.push("<dt>Total number of CSS requests</dt><dd>"+ numlinks +"</dd>");
 		info.push("<dt>Total number of blocking CSS requests</dt><dd>"+ (loadCSS.config && loadCSS.config.concat && loadCSS.block.length ? 1 : loadCSS.block.length ) +"</dd>");
 		info.push("<dt>Total number of non-blocking CSS requests</dt><dd>"+ (loadCSS.config && loadCSS.config.concat && loadCSS.defer.length ? 1 : loadCSS.defer.length)  +"</dd>");
+		info.push("<dt>CSS files that timed out and were refetched</dt><dd>"+ (loadCSS.length ? loadCSS.timedout.join(", ") : "0" ) +"</dd>");
 		info.push("<dt>Initial viewport dimensions</dt><dd>Width: "+ window.innerWidth +", Height: "+ window.innerHeight +"</dd>");
 		info.push("<dt>Initial screen dimensions</dt><dd>Width: "+ screen.width +", Height: "+ screen.height +"</dd>");
 		info.push("</dl>");
