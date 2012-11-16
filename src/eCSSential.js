@@ -46,7 +46,8 @@ window.eCSSential = function( css, config ){
 	function makeLinks( arr ){
 		var marker = arr === load ? '<meta id="eCSS">' : '',
 			start = '<link href="',
-			end = '" rel="stylesheet">',
+			end = ' rel="stylesheet">',
+			last = '" rel="stylesheet">',
 			hrefs = [],
 			hrefmqs = [];
 
@@ -59,11 +60,11 @@ window.eCSSential = function( css, config ){
 		
 		// if the concat option is specified (recommended), pass the array through it and dump the resulting string into a single stylesheet url
 		if( o.concat ){
-			return start + o.concat( hrefs ) + end + marker;
+			return start + o.concat( hrefs ) + last + marker;
 		}
 		// otherwise, make separate link elements
 		else {
-			return start + hrefmqs.join( '" ' + end + start ) + end + marker;
+			return start + hrefmqs.join( '" ' + end + start ) + last + marker;
 		}
 	}
 	
