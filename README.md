@@ -38,7 +38,7 @@ Using eCSSential is as easy as including the full source of eCSSential.min.js (f
 	
 	<head>
 	    ...
-	    <script>
+	    <script id="ecssential">
 		    <!-- Add eCSSential.min.js inline here -->
 		
 		    eCSSential({
@@ -57,7 +57,7 @@ Because eCSSential requires JavaScript support to perform its optimizations, you
 
 	<head>
 	    ...
-	    <script>
+	    <script id="ecssential">
 		    <!-- Add eCSSential.min.js inline here -->
 		
 		    eCSSential({
