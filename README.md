@@ -1,3 +1,6 @@
+# No Longer Maintained
+Thanks for checking out this project. We're keeping it here for historical purposes but otherwise, it's no longer maintained and we do not recommend using it now that standards for CSS loading have evolved.
+
 # eCSSential
 ## Making responsive CSS load the way it should.
 
