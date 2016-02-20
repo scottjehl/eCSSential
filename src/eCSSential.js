@@ -11,7 +11,7 @@ window.eCSSential = function( css, config ){
 		o = config || {},
 		w = window,
 		d = w.document,
-		insLoc = d.getElementsByTagName( "script" )[0],
+		insLoc = d.getElementById( "ecssential" ) || d.getElementsByTagName( 'head' )[0].lastChild,
 		whre = /(min|max)-(width|height)/gmi,
 		ieV = w.navigator.appVersion.match( /MSIE ([678])\./ ) && RegExp.$1,
 		ieRe = new RegExp( "(IE" + ieV + ")|(IE)", "g" );
@@ -94,7 +94,7 @@ window.eCSSential = function( css, config ){
 	if( defer.length ){
 		var div = d.createElement( "div" );
 		div.innerHTML = makeLinks( defer );
-		insLoc.parentNode.insertBefore( div, insLoc );
+		insLoc.insertAfter( div, insLoc );
 	}
 	// return data for testing
 	return { css: css, config: config, block: load, defer: defer, timedout: timedout };
