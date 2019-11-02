@@ -27,7 +27,7 @@
     }
   ],
   "dependencies": {
-    "jquery": "~1.5"
+    "jquery": "~3.4"
   },
   "keywords": []
 }
